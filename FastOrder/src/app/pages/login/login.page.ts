@@ -30,14 +30,20 @@ export class LoginPage implements OnInit {
   }
 
   // Lógica de navegación simulada
-  iniciarSesion() {
-    console.log('Intentando iniciar sesión con:', this.usuario);
+iniciarSesion() {
+    // *** Lógica SIMULADA de Autenticación y Roles ***
 
-    // En un proyecto real, aquí harías una llamada HTTP al backend.
-    
-    // Si el login es exitoso:
-    // Navegamos a la siguiente pantalla (Image 2: Selección de Mesa)
-    this.router.navigateByUrl('/table-selection');
+    if (this.usuario.username === 'admin' && this.usuario.password === '1234') {
+      // Si es un administrador, navegar al Dashboard de Admin
+      this.router.navigateByUrl('/admin-dashboard'); 
+    } else if (this.usuario.username === 'mozo' && this.usuario.password === '1234') {
+      // Si es un mozo, navegar a la Selección de Mesa
+      this.router.navigateByUrl('/table-selection');
+    } else {
+      // Credenciales inválidas
+      console.error('Credenciales incorrectas');
+      // En un caso real, mostrarías un Toast o Alert aquí.
+    }
   }
 
   togglePasswordVisibility() {

@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Gestión de Stock (Admin)</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/table-selection" text="Menú Admin"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleVista()">
+        <ion-icon slot="icon-only" [name]="mostrarLista ? 'add-circle-outline' : 'list-outline'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="mostrarLista">
+    
+    <ion-card *ngIf="insumosBajoStock.length > 0" color="danger" class="ion-margin-bottom">
+      <ion-card-header>
+        <ion-card-title>⚠️ Alerta de Bajo Stock ({{ insumosBajoStock.length }})</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngFor="let insumo of insumosBajoStock">
+          **{{ insumo.nombre }}**: {{ insumo.stockActual }} {{ insumo.unidadDeMedida }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Insumos Activos ({{ insumos.length }})</ion-label>
+      </ion-list-header>
+      
+      <ion-item button *ngFor="let insumo of insumos" (click)="actualizarStock(insumo)">
+        <ion-label>
+          <h2>{{ insumo.nombre }}</h2>
+          <p>Mínimo: {{ insumo.stockMinimo }} {{ insumo.unidadDeMedida }}</p>
+        </ion-label>
+        <ion-badge slot="end" [color]="getColorAlerta(insumo)">
+          {{ insumo.stockActual }} {{ insumo.unidadDeMedida }}
+        </ion-badge>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="!mostrarLista">
+    <ion-card>
+      <ion-card-header color="tertiary">
+        <ion-card-title class="ion-text-center">Cargar Nuevo Insumo</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <form (ngSubmit)="guardarNuevoInsumo()">
+          <ion-list lines="full">
+            
+            <ion-item>
+              <ion-label position="floating">Nombre del Insumo</ion-label>
+              <ion-input type="text" [(ngModel)]="nuevoInsumo.nombre" name="nombre" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="floating">Stock Actual</ion-label>
+              <ion-input type="number" [(ngModel)]="nuevoInsumo.stockActual" name="stockActual" min="0" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label>Unidad de Medida</ion-label>
+              <ion-select [(ngModel)]="nuevoInsumo.unidadDeMedida" name="unidad" interface="popover">
+                <ion-select-option value="unidades">Unidades</ion-select-option>
+                <ion-select-option value="kg">Kilogramos (kg)</ion-select-option>
+                <ion-select-option value="litros">Litros</ion-select-option>
+              </ion-select>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="floating">Stock Mínimo de Alerta</ion-label>
+              <ion-input type="number" [(ngModel)]="nuevoInsumo.stockMinimo" name="stockMinimo" min="1"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="floating">Proveedor</ion-label>
+              <ion-input type="text" [(ngModel)]="nuevoInsumo.proveedor" name="proveedor"></ion-input>
+            </ion-item>
+            
+          </ion-list>
+          
+          <ion-button expand="block" type="submit" class="ion-margin-top" color="success">
+            Guardar Insumo
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/table-selection" text="Mesa {{ mesaId }}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Carga de Pedido</ion-title>
+
+    <ion-buttons slot="end" class="ion-hide-lg-up">
+      <ion-button (click)="cambiarVista('menu')" [color]="mostrarMenu ? 'light' : 'primary'">Menú</ion-button>
+      <ion-button (click)="cambiarVista('resumen')" [color]="mostrarResumen ? 'light' : 'primary'">Pedido ({{ itemsPedido.length }})</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-split-pane contentId="main-content">
+    
+    <div id="menu-panel" [class.ion-hide]="!mostrarMenu" class="ion-page">
+      <ion-header class="ion-hide-lg-up">
+        <ion-toolbar>
+          <ion-title>Menú</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content>
+        <ion-segment [(ngModel)]="categoriaSeleccionada" scrollable color="primary" class="ion-padding-horizontal">
+          <ion-segment-button *ngFor="let categoria of categorias" [value]="categoria">
+            <ion-label>{{ categoria | titlecase }}</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        <ion-list lines="full">
+          <ion-item button *ngFor="let producto of productosFiltrados" (click)="agregarProducto(producto)">
+            <ion-label>
+              <h2>{{ producto.nombre }} <ion-badge color="success">${{ producto.precio }}</ion-badge></h2>
+              <p>{{ producto.descripcion }}</p>
+            </ion-label>
+            <ion-icon slot="end" name="add-circle-outline" color="primary"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </div>
+
+    <div id="resumen-panel" [class.ion-hide]="!mostrarResumen" class="ion-page">
+      <ion-header class="ion-hide-lg-up">
+        <ion-toolbar>
+          <ion-title>Resumen del Pedido</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content id="main-content" class="ion-padding">
+        
+        <ion-card *ngIf="itemsPedido.length > 0">
+          <ion-card-header>
+            <ion-card-title>Pedido en Curso (Mesa {{ mesaId }})</ion-card-title>
+          </ion-card-header>
+          
+          <ion-list lines="full">
+            <ion-item *ngFor="let item of itemsPedido">
+              <ion-label>
+                <h3>{{ item.nombre }}</h3>
+                <p> ${{ item.subtotal }}</p>
+              </ion-label>
+              
+              <div slot="end" class="cantidad-control">
+                <ion-button size="small" fill="clear" (click)="manejarCantidad(item, 'decrementar')">
+                  <ion-icon name="remove-circle-outline"></ion-icon>
+                </ion-button>
+                <ion-text color="dark" class="ion-padding-horizontal">
+                  {{ item.cantidad }}
+                </ion-text>
+                <ion-button size="small" fill="clear" (click)="manejarCantidad(item, 'incrementar')">
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+
+        <ion-text *ngIf="itemsPedido.length === 0" class="ion-text-center ion-padding">
+          <h2>El pedido está vacío.</h2>
+          <p>Seleccione productos del menú.</p>
+        </ion-text>
+      </ion-content>
+
+      <ion-footer>
+        <ion-toolbar>
+          <ion-row class="ion-align-items-center ion-justify-content-between ion-padding-horizontal">
+            <ion-col size="auto">
+              <ion-text color="dark">
+                <h2 class="ion-no-margin">Total: **${{ subtotalPedido }}**</h2>
+              </ion-text>
+            </ion-col>
+            <ion-col size="auto">
+              <ion-button expand="block" (click)="enviarPedido()" [disabled]="itemsPedido.length === 0" color="success">
+                <ion-icon slot="start" name="send"></ion-icon>
+                Enviar a Cocina
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-toolbar>
+      </ion-footer>
+    </div>
+  </ion-split-pane>
+</ion-content>

@@ -1,0 +1,12 @@
+// No requiere muchos estilos, pero podemos darle un mejor aspecto al badge
+ion-badge {
+  font-size: 0.9em;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+// Estilo para el total en el título de la tarjeta
+ion-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

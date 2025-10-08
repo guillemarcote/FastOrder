@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Menú de Administrador</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/login">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-list lines="full">
+    
+    <ion-list-header>
+      <ion-label>Gestión del Restaurante</ion-label>
+    </ion-list-header>
+    
+    <ion-item button routerLink="/stock-admin">
+      <ion-icon slot="start" name="layers-outline" color="primary"></ion-icon>
+      <ion-label>
+        <h2>Gestión de Insumos y Stock</h2>
+        <p>Cargar, actualizar y ver alertas de ingredientes.</p>
+      </ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    
+    <ion-item button>
+      <ion-icon slot="start" name="restaurant-outline" color="secondary"></ion-icon>
+      <ion-label>
+        <h2>Administración del Menú</h2>
+        <p>Añadir, modificar y eliminar productos.</p>
+      </ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item button>
+      <ion-icon slot="start" name="people-outline" color="tertiary"></ion-icon>
+      <ion-label>
+        <h2>Gestión de Usuarios (Mozos)</h2>
+        <p>Crear cuentas y asignar roles.</p>
+      </ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    
+  </ion-list>
+  
+</ion-content>

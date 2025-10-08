@@ -1,0 +1,28 @@
+// Centrar el título de la columna y asegurar el color de fondo
+.columna-card {
+  ion-card-header {
+    ion-card-title {
+      color: white; // Texto blanco en el título de la columna
+      font-size: 1.1em;
+    }
+  }
+}
+
+// Estilo para las tarjetas de pedido individuales
+.pedido-card {
+  margin-top: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+  ion-card-title {
+    font-weight: bold;
+  }
+  
+  ion-card-subtitle {
+    font-size: 0.9em;
+  }
+}
+
+// Estilos de la lista de ítems dentro del pedido
+ion-list {
+  background: transparent;
+}

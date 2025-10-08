@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Dashboard de Cocina/Bar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/login">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-grid>
+    <ion-row class="ion-align-items-start">
+      
+      <ion-col size="12" size-md="4" *ngFor="let columna of columnas">
+        
+        <ion-card [color]="columna.color" class="columna-card">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">{{ columna.titulo }} ({{ getPedidosPorEstado(columna.estado).length }})</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+
+        <ion-card *ngFor="let pedido of getPedidosPorEstado(columna.estado)" class="pedido-card">
+          <ion-card-header>
+            <ion-card-title color="primary">MESA #{{ pedido.mesa }}</ion-card-title>
+            <ion-card-subtitle>Recibido: {{ pedido.hora }}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list lines="none">
+              <ion-item *ngFor="let item of pedido.items">
+                <ion-label>
+                  <h3>{{ item.nombre }} (x{{ item.cantidad }})</h3>
+                  <p *ngIf="item.notas">Notas: {{ item.notas }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+            
+            <ion-button expand="block" (click)="avanzarEstado(pedido)" [color]="columna.color">
+              <span *ngIf="columna.estado === 'nuevo'">Iniciar Preparación</span>
+              <span *ngIf="columna.estado === 'en_preparacion'">Marcar como Listo</span>
+              <span *ngIf="columna.estado === 'listo'">Entregado (Eliminar)</span>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+        
+        <ion-text *ngIf="getPedidosPorEstado(columna.estado).length === 0" color="medium">
+          <p class="ion-text-center ion-padding">No hay pedidos en esta etapa.</p>
+        </ion-text>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
