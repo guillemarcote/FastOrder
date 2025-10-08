@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">FastOrder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <ion-text color="primary">
+      <h1 class="ion-text-center">Login de Mozo</h1>
+    </ion-text>
+
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="usuario.username" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="usuario.password" required></ion-input>
+        <ion-icon name="eye-outline" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" class="ion-margin-top" (click)="iniciarSesion()"
+      [disabled]="!usuario.username || !usuario.password">
+      Iniciar sesión
+    </ion-button>
+
+    <p class="ion-text-center ion-margin-top">
+      <a routerLink="/forgot-password">¿Olvidó su contraseña?</a>
+    </p>
+  </div>
+</ion-content>

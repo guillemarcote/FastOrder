@@ -1,0 +1,41 @@
+ion-content {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    --background: #f8f8f8;
+}
+
+// Estilo para las tarjetas de mesa
+.mesa-card {
+    height: 150px; // Altura fija para todas las tarjetas
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; // Indica que se puede hacer clic
+
+    ion-card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ffffff; // Texto blanco para que resalte en el fondo de color
+    }
+
+    ion-card-content {
+        ion-icon {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .estado-text {
+            font-weight: 500;
+            color: #ffffff;
+        }
+    }
+
+    // Asegurar que las tarjetas estén elevadas y no tengan margen interno adicional
+    ion-card {
+        margin: 4px;
+    }
+}

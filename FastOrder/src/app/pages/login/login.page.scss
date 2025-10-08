@@ -1,0 +1,67 @@
+// Asegura que la página tome toda la altura y el contenedor esté centrado.
+ion-content {
+    --background: #f8f8f8; // Un color de fondo suave
+
+    // Contenedor principal para centrar los elementos verticalmente
+    .login-container {
+        max-width: 400px; // Limita el ancho en pantallas grandes (como tabletas)
+        margin: 0 auto; // Centra el contenedor horizontalmente
+        padding-top: 20vh; // Empuja el contenido hacia abajo para centrarlo visualmente
+
+        @media (min-width: 600px) {
+            // En pantallas más grandes, podemos reducir el padding superior
+            padding-top: 15vh;
+        }
+
+        h1 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--ion-color-primary, #3880ff); // Usar el color primario de Ionic
+        }
+
+        ion-list {
+            background: #f8f8f8;
+        }
+
+        // Estilos para los campos de input
+        ion-item {
+            margin-bottom: 10px;
+            --border-radius: 8px;
+            --highlight-color-focused: var(--ion-color-primary);
+            --padding-start: 10px;
+            --inner-border-width: 0; // Quita la línea separadora por defecto
+
+            // Estilo de sombra suave (opcional, para dar efecto de "elevado")
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --background: lightGrey;
+        }
+
+        ion-label {
+            font-weight: 600;
+            color: black;
+        }
+
+        ion-input {
+            color: black;
+        }
+
+        // Estilo para el botón de Iniciar Sesión
+        ion-button {
+            height: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 25px;
+        }
+
+        // Estilo para el enlace de "Olvidó su contraseña"
+        a {
+            color: var(--ion-color-medium); // Un color gris para el enlace
+            font-size: 0.9rem;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
