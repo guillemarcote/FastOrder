@@ -40,12 +40,12 @@ Para clonar y levantar el proyecto **FastOrder**, necesitarás las siguientes he
     ```bash
     git clone https://github.com/guillemarcote/FastOrder.git
     cd FastOrder    
-    cd FastOrder
+    cd frontend
 
     ```
 
 2.  **Instalar Dependencias:**
-    * Desde la carpeta raíz del proyecto (`/FastOrder`):
+    * Desde la carpeta raíz del proyecto frontend (`/frontend`):
         ```bash
         npm install
         ```
