@@ -12,11 +12,10 @@ ion-content {
             // En pantallas más grandes, podemos reducir el padding superior
             padding-top: 15vh;
         }
-
+        
         h1 {
             font-weight: 700;
             margin-bottom: 30px;
-            color: var(--ion-color-primary, #3880ff); // Usar el color primario de Ionic
         }
 
         ion-list {
@@ -45,6 +44,7 @@ ion-content {
             color: black;
         }
 
+
         // Estilo para el botón de Iniciar Sesión
         ion-button {
             height: 50px;
@@ -64,4 +64,52 @@ ion-content {
             }
         }
     }
+    .contenedor-logo {
+        text-align: center;        // Centra todo el contenido
+        margin-bottom: 20px;       // Espacio debajo del logo
+    }
+
+    .logo-imagen {
+        width: 80px;       // alto y ancho del logo
+        height: 80px;
+        margin-bottom: 10px;
+        border-radius: 15px;     
+        background: linear-gradient(135deg, #ff5a3d, #ff7b3d); // Fondo naranja tipo ícono
+        padding: 10px;
+    }
+
+    .titulo {
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin: 0;
+        color: #222;        
+    }
+
+    .subtitulo {
+        font-size: 0.95rem;
+        color: #666;
+        margin: 0;
+    }
+
+    // Estilos para el boton de iniciar sesión que tienen la misma gama del logo. 
+    .ion-margin-top {
+        --background: linear-gradient(135deg, #ff5a3d, #ff7b3d);
+  
+    /* Efecto hover suave */
+        --background-hover: linear-gradient(135deg, #ff7b3d, #ff5a3d);
+        --background-activated: linear-gradient(135deg, #ff7b3d, #ff5a3d);
+
+        color: white;
+        font-weight: 600;
+        height: 50px;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 8px rgba(255, 90, 61, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .ion-margin-top:hover {
+        transform: translateY(-2px); /* tiempo que tarda en cambiar */
+        box-shadow: 0 6px 12px rgba(255, 90, 61, 0.4);
+    }
 }
+    
