@@ -1,15 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">FastOrder</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="login-container">
-    <ion-text color="primary">
-      <h1 class="ion-text-center">Login de Mozo</h1>
-    </ion-text>
+<ion-content class="ion-padding"> 
+  <div class="contenedor-logo"> <!-- utilice un contendor para el logo, titulo y subtitulo -->
+    <img src="assets/logo.png" alt="logo" class="logo-imagen">
+    <h1 class="titulo">FastOrder</h1>
+    <p class="subtitulo">Sistema de gestión para restaurantes</p>
+  </div>
 
+  <div class="login-container">
     <ion-list lines="none">
       <ion-item>
         <ion-label position="floating">Usuario</ion-label>
@@ -23,12 +24,12 @@
       </ion-item>
     </ion-list>
 
-    <ion-button expand="block" class="ion-margin-top" (click)="iniciarSesion()"
+    <ion-button expand="block" class="ion-margin-top" (click)="iniciarSesion()" 
       [disabled]="!usuario.username || !usuario.password">
       Iniciar sesión
-    </ion-button>
+    </ion-button> <!-- agregue la clase "ion-margin-top" para poder darle el estilo al boton -->
 
-    <p class="ion-text-center ion-margin-top">
+    <p class="ion-text-center">
       <a routerLink="/forgot-password">¿Olvidó su contraseña?</a>
     </p>
   </div>
