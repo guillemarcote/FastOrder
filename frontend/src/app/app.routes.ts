@@ -11,10 +11,7 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
   },
-  {
-    path: 'table-selection',
-    loadComponent: () => import('./pages/table-selection/table-selection.page').then( m => m.TableSelectionPage)
-  },
+  
   {
     // Ruta para la Carga de Pedido (Image 3)
     path: 'pedido/:id', 
@@ -35,6 +32,24 @@ export const routes: Routes = [
   {
     path: 'kitchen-dashboard',
     loadComponent: () => import('./pages/kitchen-dashboard/kitchen-dashboard.page').then( m => m.KitchenDashboardPage)
+  }, 
+  {
+    // RUTA PRINCIPAL DEL MOZO: Ahora apunta al componente de Tabs
+    path: 'mozo-app',
+    loadComponent: () => import('./pages/mozo-tabs/mozo-tabs.page').then(m => m.MozoTabsPage),
+    children: [
+      {
+        path: 'table-selection',
+        loadComponent: () => import('./pages/table-selection/table-selection.page').then( m => m.TableSelectionPage)
+      },
+      // Aquí irían las rutas para las otras pestañas (Menú, Pedido, Cuenta)
+      // Por ahora, solo Mesa es funcional
+      {
+        path: '',
+        redirectTo: '/mozo-app/table-selection',
+        pathMatch: 'full',
+      },
+    ],
   },
 ];
 

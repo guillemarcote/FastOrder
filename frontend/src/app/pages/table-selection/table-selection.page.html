@@ -1,46 +1,51 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button> 
-    </ion-buttons>
-    <ion-title>Selección de Mesa</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="cargarMesasSimuladas()">
-        <ion-icon name="refresh-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <div class="mozo-app-header ion-padding-horizontal">
+      <div class="mozo-info">
+        <div class="app-logo"></div>
+        <ion-label>
+          <h3>MozoApp</h3>
+          <p>Carlos Rodríguez - Mozo Senior</p>
+        </ion-label>
+      </div>
+      <div class="alerts-container">
+        <ion-badge color="danger">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          {{ mesasNecesitanAtencion }} necesita atención 
+        </ion-badge>
+        
+        <ion-badge color="primary">
+          <ion-icon name="people-outline"></ion-icon>
+          {{ mesasOcupadas }} mesas ocupadas
+        </ion-badge>
+        <ion-icon name="log-out-outline" slot="end" routerLink="/login" color="medium"></ion-icon>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding-horizontal">
+  
+  <h2 class="ion-padding-vertical">Vista del Restaurante</h2>
   
   <ion-grid>
     <ion-row>
-      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let mesa of mesas">
+      <ion-col size="6" *ngFor="let mesa of mesas">
         
         <ion-card 
-          class="mesa-card ion-activatable" 
-          [color]="getColorEstado(mesa.estado)" 
-          (click)="seleccionarMesa(mesa)">
-          
-          <ion-ripple-effect></ion-ripple-effect>
-          
-          <ion-card-header>
-            <ion-card-title class="ion-text-center">Mesa {{ mesa.numero }}</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content class="ion-text-center">
+          class="mesa-card" 
+          (click)="seleccionarMesa(mesa)"
+          [color]="mesa.estado === 'atencion' ? 'danger' : ''"> <ion-card-content>
+            <h2 class="mesa-numero">Mesa {{ mesa.numero }}</h2>
+            <p class="mesa-asientos">{{ mesa.asientos }} asientos</p>
             
-            <ion-icon 
-              [name]="mesa.estado === 'libre' ? 'checkmark-circle-outline' : 'restaurant-outline'" 
-              size="large">
-            </ion-icon>
-            
-            <p class="estado-text">
+            <ion-badge class="estado-badge" [color]="getColorEstado(mesa.estado)">
+              <span *ngIf="mesa.estado === 'libre'">Libre</span>
               <span *ngIf="mesa.estado === 'ocupada'">Ocupada</span>
-              <span *ngIf="mesa.estado === 'libre'">¡Libre!</span>
-              <span *ngIf="mesa.estado === 'pendiente_pago'">Pendiente de Pago</span>
-            </p>
+              <span *ngIf="mesa.estado === 'atencion'">Atención</span>
+              <span *ngIf="mesa.estado === 'pendiente_pago'">Pago Pendiente</span>
+            </ion-badge>
+            
           </ion-card-content>
         </ion-card>
         
