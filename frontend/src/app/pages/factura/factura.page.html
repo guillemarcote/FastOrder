@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Mesa {{ numeroMesa }} - Cuenta</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2 class="section-title">Resumen del Pedido</h2>
+
+  <ion-list class="pedido-summary-list">
+    <ion-item *ngFor="let item of itemsPedido" lines="none" class="item-card">
+      <div class="item-details">
+        <ion-label>
+          <h2>{{ item.nombre }}</h2>
+          <p>{{ item.cantidad }} x ${{ item.precioUnitario | number:'1.2-2' }}</p>
+          <ion-text *ngIf="item.notas" color="medium" class="item-notes">
+            <small>Notas: {{ item.notas }}</small>
+          </ion-text>
+        </ion-label>
+        <ion-text class="item-total">${{ (item.cantidad * item.precioUnitario) | number:'1.2-2' }}</ion-text>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div class="total-summary">
+    <ion-item lines="none">
+      <ion-label>Subtotal</ion-label>
+      <ion-text slot="end">${{ subtotal | number:'1.2-2' }}</ion-text>
+    </ion-item>
+    <ion-item lines="none" *ngIf="descuento > 0">
+      <ion-label>Descuento</ion-label>
+      <ion-text slot="end" color="danger">-${{ descuento | number:'1.2-2' }}</ion-text>
+    </ion-item>
+    <ion-item lines="none" class="grand-total-item">
+      <ion-label>
+        <h2>TOTAL</h2>
+      </ion-label>
+      <ion-text slot="end">
+        <h2>${{ total | number:'1.2-2' }}</h2>
+      </ion-text>
+    </ion-item>
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block" fill="outline" color="medium" (click)="cancelar()">Cancelar</ion-button>
+    <ion-button expand="block" color="primary" (click)="solicitarFactura()">Solicitar Factura</ion-button>
+  </ion-toolbar>
+</ion-footer>

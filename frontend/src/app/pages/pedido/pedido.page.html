@@ -82,24 +82,23 @@
           <p>Seleccione productos del menú.</p>
         </ion-text>
       </ion-content>
-
-      <ion-footer>
-        <ion-toolbar>
-          <ion-row class="ion-align-items-center ion-justify-content-between ion-padding-horizontal">
-            <ion-col size="auto">
-              <ion-text color="dark">
-                <h2 class="ion-no-margin">Total: **${{ subtotalPedido }}**</h2>
-              </ion-text>
-            </ion-col>
-            <ion-col size="auto">
-              <ion-button expand="block" (click)="enviarPedido()" [disabled]="itemsPedido.length === 0" color="success">
-                <ion-icon slot="start" name="send"></ion-icon>
-                Enviar a Cocina
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-toolbar>
-      </ion-footer>
     </div>
   </ion-split-pane>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-align-items-center ion-justify-content-between ion-padding-horizontal">
+      <ion-col size="auto">
+        <ion-text color="dark">
+          <h2 class="ion-no-margin">Total: **${{ subtotalPedido }}**</h2>
+        </ion-text>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button expand="block" (click)="enviarPedido()" [disabled]="itemsPedido.length === 0" color="success">
+          <ion-icon slot="start" name="send"></ion-icon>
+          Enviar a Cocina
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

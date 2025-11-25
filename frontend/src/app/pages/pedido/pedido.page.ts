@@ -3,7 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { addIcons } from 'ionicons';
+import { 
+  addCircleOutline, 
+  removeCircleOutline, 
+  send 
+} from 'ionicons/icons';
 // Importar modelos
 import { Producto, ItemPedido } from 'src/app/models/producto.model';
 
@@ -45,6 +50,11 @@ export class PedidoPage implements OnInit {
   ) {
     // Obtener el ID de la mesa de la URL (ruta: /pedido/:id)
     this.mesaId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    addIcons({ 
+      addCircleOutline, 
+      removeCircleOutline, 
+      send 
+    });
   }
 
   ngOnInit() {

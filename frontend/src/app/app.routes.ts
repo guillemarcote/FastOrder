@@ -49,6 +49,11 @@ export const routes: Routes = [
         redirectTo: '/mozo-app/table-selection',
         pathMatch: 'full',
       },
+      {
+        path: 'cuenta',
+        // Puedes poner aquí la página de Factura directamente
+        loadComponent: () => import('./pages/factura/factura.page').then(m => m.FacturaPage), 
+      },
     ],
   },
 ];

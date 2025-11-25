@@ -1,0 +1,112 @@
+// src/app/pages/factura/factura.page.scss
+
+// Aplicar tema oscuro
+// ion-header, ion-toolbar {
+//   --background: var(--ion-color-dark); // Fondo oscuro para el header
+//   --color: var(--ion-color-light-contrast); // Texto claro en el header
+// }
+
+// ion-content {
+//   --background: var(--ion-color-dark); // Fondo oscuro para el contenido
+//   --color: var(--ion-color-light-contrast); // Texto claro en el contenido
+// }
+
+// ion-footer ion-toolbar {
+//   --background: var(--ion-color-dark); // Fondo oscuro para el footer
+// }
+
+// Título de la sección
+.section-title {
+  color: var(--ion-color-light-contrast);
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+// Lista de ítems del pedido
+.pedido-summary-list {
+  background: var(--ion-color-dark); // Fondo oscuro
+  border-radius: 12px;
+  overflow: hidden; // Para que los bordes redondeados se vean bien
+  margin-bottom: 20px;
+  padding: 0;
+
+  .item-card {
+    --background: var(--ion-color-medium-tint); // Un tono más claro que el dark para las tarjetas
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    
+    .item-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      
+      ion-label {
+        h2 {
+          font-weight: 600;
+          font-size: 1.1rem;
+          color: var(--ion-color-light-contrast);
+          margin: 0;
+        }
+        p {
+          font-size: 0.9rem;
+          color: var(--ion-color-medium);
+          margin-top: 2px;
+        }
+        .item-notes {
+          font-size: 0.75rem;
+          color: var(--ion-color-tertiary); // Un color para las notas
+        }
+      }
+      
+      .item-total {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--ion-color-light-contrast);
+      }
+    }
+  }
+}
+
+// Resumen de totales
+.total-summary {
+  background: var(--ion-color-medium-tint); // Fondo similar al de los ítems
+  border-radius: 12px;
+  margin-top: 20px;
+  padding: 0;
+
+  ion-item {
+    --background: transparent; // Para que el fondo del item sea el del contenedor
+    --color: var(--ion-color-light-contrast); // Texto claro
+    padding: 10px 15px;
+
+    ion-label {
+      font-size: 1rem;
+    }
+    ion-text {
+      font-size: 1rem;
+    }
+
+    &.grand-total-item {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h2 {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: var(--ion-color-primary); // Total resaltado en color primario
+      }
+    }
+  }
+}
+
+// Botones del footer
+ion-footer ion-toolbar {
+  padding: 10px 16px;
+  ion-button {
+    margin-bottom: 8px; // Espacio entre los botones
+    --border-radius: 8px; // Bordes redondeados para los botones
+    height: 48px; // Altura consistente para los botones
+  }
+}
