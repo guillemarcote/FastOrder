@@ -38,7 +38,7 @@ iniciarSesion() {
       this.router.navigateByUrl('/admin-dashboard'); 
     } else if (this.usuario.username === 'mozo' && this.usuario.password === '1234') {
       // Si es un mozo, navegar a la Selección de Mesa
-      this.router.navigateByUrl('/table-selection');
+      this.router.navigateByUrl('/mozo-app');
     } else {
       // Credenciales inválidas
       console.error('Credenciales incorrectas');
